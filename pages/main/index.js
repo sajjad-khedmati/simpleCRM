@@ -1,7 +1,11 @@
+import Link from "next/link";
+
 export default function Index() {
 	return (
 		<section className="container">
-			<h2>Main Page</h2>
+			<Link href="/customer" className="">
+				Add New Customer
+			</Link>
 		</section>
 	);
 }
