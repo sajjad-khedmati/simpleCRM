@@ -33,10 +33,12 @@ export default function LandingPage() {
 				</div>
 
 				<Link
-					className="px-4 py-2 rounded-xl bg-sky-500 text-white text-center text-xl font-semibold"
+					className="px-4 py-2 rounded-xl border-2 border-sky-500 bg-sky-500 text-white text-center text-xl font-semibold
+                    hover:bg-transparent hover:border-sky-700 hover:text-sky-700 transition-all duration-300 shadow-2xl
+                    shadow-sky-500/40 hover:shadow-sky-700/30"
 					href="main"
 				>
-					Start free trial
+					Start Managing
 				</Link>
 			</div>
 		</section>
