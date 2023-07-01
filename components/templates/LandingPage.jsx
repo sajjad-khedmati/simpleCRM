@@ -8,10 +8,10 @@ export default function LandingPage() {
 			<div className="w-full h-max lg:order-2">
 				<Image
 					className="w-full h-auto"
-					src="/assets/landingImage.jpg"
+					src="/assets/landingImage.png"
 					alt="landing image"
-					width={1000}
-					height={900}
+					width={1200}
+					height={1000}
 				/>
 			</div>
 			{/* left side */}
