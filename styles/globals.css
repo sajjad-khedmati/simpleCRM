@@ -12,6 +12,10 @@ body {
 	overflow-x: hidden;
 }
 
+::-webkit-scrollbar {
+	width: 0;
+}
+
 /* tailwind configurations */
 @tailwind base;
 @tailwind components;
