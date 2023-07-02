@@ -1,7 +1,17 @@
 import connectToDB from "@/databaseConnection";
 import { Customer } from "@/models/Customer";
+import { useRouter } from "next/router";
 
 export default function CustomerId({ data }) {
+	const router = useRouter();
+
+	if (router.isFallback) {
+		return (
+			<section className="container">
+				<p>loading...</p>
+			</section>
+		);
+	}
 	return (
 		<section className="container">
 			<div className="flex flex-col items-center gap-2 mt-4">
@@ -35,6 +45,12 @@ export async function getStaticProps(context) {
 	const { params } = context;
 	await connectToDB();
 	const res = await Customer.findById(params.customerId);
+
+	if (!res) {
+		return {
+			notFound: true,
+		};
+	}
 
 	return {
 		props: { data: JSON.parse(JSON.stringify(res)) },
