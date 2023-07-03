@@ -24,21 +24,23 @@ export default function CustomerId({ data }) {
 	};
 
 	return (
-		<section className="container flex items-center gap-32 h-full overflow-hidden">
-			<div className="flex flex-col gap-2 mt-4 w-96 self-center">
-				<h2 className="text-4xl font-semibold capitalize">
+		<section className="container flex flex-col lg:flex-row items-center xl:gap-32 lg:gap-20 gap-10 h-full overflow-hidden">
+			<div className="flex flex-col gap-2 mt-4 md:w-96 w-full self-center">
+				<h2 className="lg:text-4xl text-lg font-semibold capitalize">
 					{data.first_name} {data.last_name}
 				</h2>
-				<p className="text-xl font-light text-slate-500">@{data.username}</p>
+				<p className="lg:text-xl text-xs font-light text-slate-500">
+					@{data.username}
+				</p>
 				<div className="border mt-4 rounded-xl border-sky-200 relative p-4 text-sm select-none">
-					<span className="absolute -top-3 left-0 bg-white px-4 text-sky-500">
+					<span className="text-xs lg:text-base absolute -top-3 left-0 bg-white px-4 text-sky-500">
 						Connection
 					</span>
-					<div>
-						{data?.email && <p className=" px-4 py-2">{data.email}</p>}
-						<p className=" px-4 py-2">{data.phone}</p>
-						<p className=" px-4 py-2 ">{data.postal_code}</p>
-						<p className="px-4 py-2">{data.address}</p>
+					<div className="text-xs">
+						{data?.email && <p className="lg:px-4 py-1 lg:py-2">{data.email}</p>}
+						<p className="lg:px-4 py-1 lg:py-2">{data.phone}</p>
+						<p className="lg:px-4 py-1 lg:py-2 ">{data.postal_code}</p>
+						<p className="lg:px-4 py-1 lg:py-2">{data.address}</p>
 					</div>
 				</div>
 				<div className="flex flex-col gap-2">
@@ -64,7 +66,7 @@ export default function CustomerId({ data }) {
 				</div>
 			</div>
 
-			<div className="flex-1 h-[600px] overflow-y-scroll w-full">
+			<div className="flex-1 lg:h-[600px] lg:overflow-y-scroll w-full">
 				<AddProduct
 					customerId={data._id}
 					products={products}
