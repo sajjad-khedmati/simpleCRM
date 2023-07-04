@@ -17,9 +17,25 @@ export default function CustomerId({ data }) {
 	}
 
 	const addProduct = () => {
+		if (products.length === 0) {
+			setProducts([
+				{
+					id: 0,
+					productName: "",
+					productPrice: "",
+					productQuantity: "",
+				},
+			]);
+			return;
+		}
 		setProducts((prev) => [
 			...prev,
-			{ productName: "", productPrice: "", productQuantity: "" },
+			{
+				id: prev[products.length - 1]?.id + 1,
+				productName: "",
+				productPrice: "",
+				productQuantity: "",
+			},
 		]);
 	};
 
@@ -37,7 +53,9 @@ export default function CustomerId({ data }) {
 						Connection
 					</span>
 					<div className="text-xs">
-						{data?.email && <p className="lg:px-4 py-1 lg:py-2">{data.email}</p>}
+						{data?.email && (
+							<p className="lg:px-4 py-1 lg:py-2">{data.email}</p>
+						)}
 						<p className="lg:px-4 py-1 lg:py-2">{data.phone}</p>
 						<p className="lg:px-4 py-1 lg:py-2 ">{data.postal_code}</p>
 						<p className="lg:px-4 py-1 lg:py-2">{data.address}</p>
