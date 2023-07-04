@@ -3,7 +3,7 @@ import { Customer } from "@/models/Customer";
 import Link from "next/link";
 
 export default function Index({ data }) {
-	const headers = ["username" , "full_name" , "email" , "phone"]
+	const headers = ["username", "full_name", "email", "phone"];
 	return (
 		<section className="container">
 			<Link href="/customer" className="">
@@ -35,9 +35,16 @@ export default function Index({ data }) {
 								<tr key={item._id} className="border-b-2">
 									{headers.map((element) => {
 										if (element === "full_name") {
+											if (item.first_name) {
+												return (
+													<td className="py-4 px-3 text-xs" key={element}>
+														{item.first_name} {item.last_name}
+													</td>
+												);
+											}
 											return (
-												<td className="py-4 px-3 text-xs" key={element}>
-													{item.first_name} {item.last_name}
+												<td className="py-4 px-3 text-xs" key={item._id}>
+													-
 												</td>
 											);
 										}
@@ -53,6 +60,12 @@ export default function Index({ data }) {
 												</td>
 											);
 										}
+
+										return (
+											<td className="py-4 px-3 text-xs" key={item}>
+												-
+											</td>
+										);
 									})}
 
 									<td className="text-center">
