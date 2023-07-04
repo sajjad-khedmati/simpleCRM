@@ -1,12 +1,14 @@
+import { useState } from "react";
+import { useRouter } from "next/router";
 import AddProduct from "@/components/templates/AddProduct";
 import connectToDB from "@/databaseConnection";
 import { Customer } from "@/models/Customer";
-import { useState } from "react";
-import { useRouter } from "next/router";
+import EditModal from "@/components/modules/EditModal";
 
 export default function CustomerId({ data }) {
 	const router = useRouter();
 	const [products, setProducts] = useState([]);
+	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
 	if (router.isFallback) {
 		return (
@@ -70,6 +72,7 @@ export default function CustomerId({ data }) {
 						Add Product
 					</button>
 					<button
+						onClick={() => setIsEditModalOpen(true)}
 						className="p-2 text-sm border-2 border-green-200 text-green-500 hover:bg-green-200 hover:text-green-700
 					 rounded-lg transition-all duration-300"
 					>
@@ -83,6 +86,8 @@ export default function CustomerId({ data }) {
 					</button>
 				</div>
 			</div>
+
+			<EditModal customer={data} />
 
 			<div className="flex-1 lg:h-[600px] lg:overflow-y-scroll w-full">
 				<AddProduct

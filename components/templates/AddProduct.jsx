@@ -1,3 +1,5 @@
+import EditModal from "../modules/EditModal";
+
 export default function AddProduct({ customerId, products, setProducts }) {
 	const handleChange = (e, index) => {
 		products[index][e.target.name] = e.target.value;
