@@ -12,6 +12,14 @@ export default function AddProduct({ customerId, products, setProducts }) {
 
 	return (
 		<div className="my-8 grid xl:grid-cols-2 grid-cols-1 gap-4 overflow-y-scroll">
+			{products.length === 0 && (
+				<p className="">
+					no product added yet ,<br />{" "}
+					<span className="text-xs text-slate-500">
+						click on <span className="font-semibold text-slate-600">add product</span> to add new item
+					</span>
+				</p>
+			)}
 			{products.map((item, index) => {
 				return (
 					<div

@@ -4,11 +4,13 @@ import AddProduct from "@/components/templates/AddProduct";
 import connectToDB from "@/databaseConnection";
 import { Customer } from "@/models/Customer";
 import EditModal from "@/components/modules/EditModal";
+import DeleteModal from "@/components/modules/DeleteModal";
 
 export default function CustomerId({ data }) {
 	const router = useRouter();
 	const [products, setProducts] = useState([]);
 	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
 	if (router.isFallback) {
 		return (
@@ -79,6 +81,7 @@ export default function CustomerId({ data }) {
 						Edit Customer
 					</button>
 					<button
+						onClick={() => setIsDeleteModalOpen(true)}
 						className="p-2 text-sm bg-transparent border-2 border-red-200 hover:bg-red-200 hover:texxt-red-700
 					 text-red-500 rounded-lg transition-all duration-300"
 					>
@@ -87,7 +90,13 @@ export default function CustomerId({ data }) {
 				</div>
 			</div>
 
-			<EditModal customer={data} />
+			{isEditModalOpen && (
+				<EditModal customer={data} setIsOpen={setIsEditModalOpen} />
+			)}
+
+			{isDeleteModalOpen && (
+				<DeleteModal customer={data} setIsOpen={setIsDeleteModalOpen} />
+			)}
 
 			<div className="flex-1 lg:h-[600px] lg:overflow-y-scroll w-full">
 				<AddProduct

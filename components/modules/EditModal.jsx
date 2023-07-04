@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-// import { MdOutlineClose } from "react-icons/md";
+import { MdOutlineClose } from "react-icons/md";
 
-export default function EditModal({ customer }) {
+export default function EditModal({ customer, setIsOpen }) {
 	const [customerData, setCustomerData] = useState(
 		(({
 			first_name,
@@ -32,7 +32,10 @@ export default function EditModal({ customer }) {
 	return (
 		<div className="fixed top-0 left-0 w-screen h-screen z-50 bg-black/60 flex items-center justify-center">
 			<div className="bg-slate-50 flex flex-col rounded-xl p-4 w-96  max-h-[90%] overflow-y-scroll">
-				{/* <MdOutlineClose /> */}
+				<MdOutlineClose
+					onClick={() => setIsOpen(false)}
+					className="ml-auto text-2xl cursor-pointer"
+				/>
 				<form>
 					{customerData &&
 						Object.entries(customerData).map((item) => {
@@ -49,9 +52,10 @@ export default function EditModal({ customer }) {
 										<textarea
 											name={item[0]}
 											id={item[0]}
-											rows="5"
+											rows="3"
 											className="w-full border-2 border-dashed rounded-xl outline-none px-4 py-2
-                                            focus-within:border-sky-300 transtion-all duration-300"
+                                            focus-within:border-sky-300 transtion-all duration-300 text-sm text-zinc-400
+                                            focus-within:text-zinc-900"
 											value={item[1]}
 											onChange={(e) => handleChange(e)}
 										></textarea>
@@ -70,7 +74,7 @@ export default function EditModal({ customer }) {
 									</label>
 									<input
 										className="px-4 py-2 border rounded-xl text-zinc-400 focus-within:text-zinc-900
-                                        outline-none focus-within:border-sky-300 transition-all duration-300"
+                                        outline-none focus-within:border-sky-300 transition-all duration-300 text-sm"
 										name={item[0]}
 										id={item[0]}
 										type="text"
@@ -81,7 +85,10 @@ export default function EditModal({ customer }) {
 							);
 						})}
 
-					<button className="py-2 text-center px-6 bg-green-300 w-full rounded-xl uppercase text-lg">
+					<button
+						className="py-2 text-center px-6 bg-green-300 w-full rounded-xl uppercase text-lg
+                    hover:bg-green-500 hover:text-white transition-all duration-300"
+					>
 						Edit
 					</button>
 				</form>
