@@ -6,11 +6,11 @@ export default function Index({ data }) {
 	const headers = ["username", "full_name", "email", "phone"];
 	return (
 		<section className="container">
-			<Link href="/customer" className="">
-				Add New Customer
-			</Link>
+			<div className="flex flex-col gap-8 mt-8">
+				<h2 className="text-center lg:text-6xl md:text-4xl text-3xl font-bold">
+					Customer List
+				</h2>
 
-			<div className="flex flex-col">
 				<div className="overflow-x-scroll">
 					<table
 						className="overflow-hidden w-full border-2 border-collapse border-gray-200

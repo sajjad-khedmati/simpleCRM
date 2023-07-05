@@ -14,18 +14,20 @@ export default function Navbar() {
 			<div className="flex items-center gap-8">
 				{route !== "/" && (
 					<div className="flex items-center gap-8 text-sm">
-						<Link href="/">Home</Link>
+						<Link href="/main">Main</Link>
 						<Link href="/about">about us</Link>
 						<Link href="/faq">FAQ</Link>
 					</div>
 				)}
-				<button
-					disabled
-					className="px-2 py-1 rounded-lg border-2 border-sky-500 text-sky-500 text-sm hover:bg-sky-500
-                 hover:text-white transition-all duration-300"
-				>
-					Authentication
-				</button>
+				{route !== "/customer" && (
+					<Link
+						href="/customer"
+						className="px-4 py-2 rounded-lg bg-sky-500 text-white text-sm
+                 hover:bg-sky-600 transition-all duration-300"
+					>
+						Add New Customer
+					</Link>
+				)}
 				{route === "/" && (
 					<Link
 						href="/main"

@@ -47,7 +47,11 @@ export default function CustomerId({ data }) {
 		<section className="container flex flex-col lg:flex-row items-center xl:gap-32 lg:gap-20 gap-10 h-full overflow-hidden">
 			<div className="flex flex-col gap-2 mt-4 md:w-96 w-full self-center">
 				<h2 className="lg:text-4xl text-lg font-semibold capitalize">
-					{data.first_name ? data.first_name + " " + data.last_name : <span className="text-slate-200">not filled</span>}
+					{data.first_name ? (
+						data.first_name + " " + data.last_name
+					) : (
+						<span className="text-slate-200">not filled</span>
+					)}
 				</h2>
 				<p className="lg:text-xl text-xs font-light text-slate-500">
 					@{data.username}
