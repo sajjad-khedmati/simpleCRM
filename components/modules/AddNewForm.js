@@ -1,11 +1,13 @@
 import { useState } from "react";
 import InputField from "../elements/InputField";
+import { toast } from "react-hot-toast";
+import axios from "axios";
 
 export default function AddNewForm() {
 	const [customerData, setCustomerData] = useState({
 		first_name: "",
 		last_name: "",
-		user_name: "",
+		username: "",
 		email: "",
 		phone: "",
 		address: "",
@@ -17,11 +19,30 @@ export default function AddNewForm() {
 			return { ...prev, [e.target.name]: e.target.value };
 		});
 	};
-
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		try {
+			const result = await axios.post("/api/customer", customerData);
+			if (result) {
+				toast.success(result.data.message);
+				setCustomerData({
+					first_name: "",
+					last_name: "",
+					username: "",
+					email: "",
+					phone: "",
+					address: "",
+					postal_code: "",
+				});
+			}
+		} catch (error) {
+			toast.error(error.message);
+		}
+	};
 	return (
 		<form
 			className="flex flex-col gap-4 mt-6"
-			onSubmit={(e) => e.preventDefault()}
+			onSubmit={(e) => handleSubmit(e)}
 		>
 			<p className="text-sky-600 font-semibold">info</p>
 			<hr className="border border-sky-600" />
@@ -29,8 +50,8 @@ export default function AddNewForm() {
 				<InputField
 					type="text"
 					label="username"
-					name="user_name"
-					value={customerData.user_name}
+					name="username"
+					value={customerData.username}
 					onChange={handleChange}
 				/>
 				<InputField

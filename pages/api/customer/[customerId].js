@@ -18,6 +18,18 @@ export default async function handler(req, res) {
 				res.status(404).json({
 					message: "customer not found",
 				});
+			} else if (req.method === "DELETE") {
+				const result = await Customer.findOneAndDelete({ _id: customerId });
+				if (result) {
+					res.status(202).json({
+						message: "customer successfully deleted",
+						data: result,
+					});
+				} else {
+					res.status(404).json({
+						message: "customer not found",
+					});
+				}
 			}
 		} catch (error) {
 			throw error.message;
