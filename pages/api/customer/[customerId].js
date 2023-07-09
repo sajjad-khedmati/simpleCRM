@@ -30,6 +30,18 @@ export default async function handler(req, res) {
 						message: "customer not found",
 					});
 				}
+			} else if (req.method === "PUT") {
+				const result = await Customer.updateOne({ _id: customerId }, req.body);
+				if (result.matchedCount > 0) {
+					res.status(201).json({
+						message: "customer successfully updated",
+						data: result,
+					});
+				} else {
+					res.status(404).json({
+						message: "customer not found",
+					});
+				}
 			}
 		} catch (error) {
 			throw error.message;
