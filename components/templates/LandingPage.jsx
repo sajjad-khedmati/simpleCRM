@@ -1,7 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import nProgress from "nprogress";
+import { useEffect } from "react";
 
 export default function LandingPage() {
+	const router = useRouter();
+
+	nProgress.configure({ showSpinner: false });
+
+	useEffect(() => {
+		router.events.on("routeChangeStart", (url) => {
+			nProgress.start();
+		});
+
+		router.events.on("routeChangeComplete", (url) => {
+			nProgress.done(false);
+		});
+	}, [router]);
 	return (
 		<section className="container h-full flex flex-col lg:flex-row justify-between items-center gap-12 xl:gap-20">
 			{/* right side */}
